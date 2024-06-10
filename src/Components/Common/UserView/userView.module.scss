@@ -1,0 +1,76 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.userView {
+    color: $base-black;
+    font-weight: 700;
+
+    .title {
+        font-size: 24px;
+        text-transform: uppercase;
+    }
+
+    .user {
+        display: flex;
+        column-gap: 17px;
+
+        .userInfo {
+            display: flex;
+            flex-direction: column;
+            row-gap: 25px;
+            min-width: 176px;
+
+            .lineInfo {
+                display: flex;
+                flex-direction: column;
+                row-gap: 8px;
+
+                .signature{
+                    font-size: 12px;
+                    text-transform: uppercase;
+                }
+
+                .meaning {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+
+    .userView {
+    
+        .title {
+            font-size: 18px;
+        }
+    
+        .user {
+            column-gap: 10px;
+
+            .avaterImage {
+                width: 185px;
+                height: 185px;
+            }
+    
+            .userInfo {
+                min-width: 125px;
+                row-gap: 15px;
+    
+                .lineInfo {
+                    row-gap: 3px;
+    
+                    .signature{
+                        font-size: 10px;
+                    }
+    
+                    .meaning {
+                        font-size: 18px;
+                        word-break: break-word;
+                    }
+                }
+            }
+        }
+    }
+}

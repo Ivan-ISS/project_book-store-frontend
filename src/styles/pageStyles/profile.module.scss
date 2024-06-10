@@ -1,0 +1,19 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+.blockUser {
+    margin-top: 87px;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 50px;
+}
+
+@media (max-width: 885px) {
+
+    .blockUser {
+        margin-top: 45px;
+        flex-direction: column;
+        row-gap: 50px;
+        align-items: center;
+    }
+}

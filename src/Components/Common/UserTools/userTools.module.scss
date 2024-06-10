@@ -1,0 +1,30 @@
+@import "/src/styles/_colors";
+@import "/src/styles/_variables";
+
+
+.userTools {
+    display: flex;
+    column-gap: 30px;
+    position: relative;
+
+    .btnTool {
+        position: relative;
+        padding: 2.5px 5px;
+        background: transparent;
+        cursor: pointer;
+        transition: 0.15s ease;
+
+        &:hover {
+            border-radius: 50%;
+            background: $base-gray-background;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .userTools {
+
+        column-gap: 10px;
+    }
+}
