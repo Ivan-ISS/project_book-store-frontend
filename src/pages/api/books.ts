@@ -8,15 +8,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { subject, startIndex } = req.query;
 
     const params = {
-        q: `subject:${subject}`,
-        startIndex: `${startIndex}`,
-        maxResults: `${defMaxResults}`
+        perPage: `${defMaxResults}`,
+        page: `${startIndex}`,
+        category: `${subject}`
     };
     
     const gbooksReqParams = new URLSearchParams(params);
     // gbooksReqParams.set('q', `Subject:${subject}`);
     
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?${gbooksReqParams.toString()}`);
+    const response = await fetch(`https://project-book-store-backend.vercel.app/api/v1/books?${gbooksReqParams.toString()}`);
     
     const data: IDataResponse = await response.json();
 

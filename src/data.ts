@@ -44,7 +44,7 @@ export const categories = [
 
 // Параметры запроса по умолчанию
 export const defaultCategory = categories[0];
-export const defStartIndex = 0;
+export const defStartIndex = 1;
 export const defMaxResults = 6;
 
 // Поля формы авторизации

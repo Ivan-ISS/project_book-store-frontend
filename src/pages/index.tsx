@@ -20,7 +20,7 @@ export interface HomeProps {
 
 export async function getStaticProps() {
 
-    const response = await fetch('https://project-book-store-backend.vercel.app/api/v1/books');
+    const response = await fetch(`https://project-book-store-backend.vercel.app/api/v1/books?perPage=${defMaxResults}&page=${defStartIndex}&category=Architecture`);
     const data: IDataResponse = await response.json();
 
     return {
@@ -37,12 +37,12 @@ export default function Home({ receivedData }: HomeProps) {
 
     const handleLoadMore = () => {
         dispatch(fetchBooks({subject: currentCategory, startIndex: startIndex}));
-        dispatch(setStartIndex(startIndex + defMaxResults));
+        dispatch(setStartIndex(startIndex + defStartIndex));
     };
 
     useEffect(() => {
         dispatch(setBooksData(receivedData));
-        dispatch(setStartIndex(defMaxResults));
+        dispatch(setStartIndex(2));
 
         if (currentCategory !== defaultCategory.nameCategory) {
             dispatch(setCurrentCategory(defaultCategory.nameCategory));
