@@ -39,11 +39,13 @@ export interface ICurrency {
 }
 
 export interface IAuthor {
-    id: number;
-    firstName: string;
-    lastName: string;
-    yearsActive: string;
-    books: IBookResponse[];
+    author: {
+        id: number;
+        firstName: string;
+        lastName: string;
+        yearsActive: string;
+        books: IBookResponse[];
+    }
 }
 
 export interface IRating {

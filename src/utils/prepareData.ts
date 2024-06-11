@@ -7,7 +7,7 @@ export default function prepareData(data: IDataResponse): IBookData[] {
         booksData.push({
             id: item.id.toString(),
             imageCoverLinks: null,
-            author: item.authors ? item.authors.map(author => author.firstName + ' ' + author.lastName) : null,
+            author: item.authors ? item.authors.map(jItem => jItem.author.firstName + ' ' + jItem.author.lastName) : null,
             title: item.name ? item.name : null,
             rating: item.averageRating ? item.averageRating : null,
             review: null,

@@ -19,7 +19,7 @@ export default function Categories({ categories }: CategoriesProps) {
 
     const handleClickCategory = (category: ICategory) => {
         dispatch(setBooksData([]));
-        dispatch(setStartIndex(defMaxResults));
+        dispatch(setStartIndex(defStartIndex + defStartIndex));
         dispatch(setCurrentCategory(category.nameCategory));
         dispatch(fetchBooks({subject: category.nameInRequest, startIndex: defStartIndex}));
     };

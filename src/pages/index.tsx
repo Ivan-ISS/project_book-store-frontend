@@ -42,7 +42,7 @@ export default function Home({ receivedData }: HomeProps) {
 
     useEffect(() => {
         dispatch(setBooksData(receivedData));
-        dispatch(setStartIndex(2));
+        dispatch(setStartIndex(defStartIndex + defStartIndex));
 
         if (currentCategory !== defaultCategory.nameCategory) {
             dispatch(setCurrentCategory(defaultCategory.nameCategory));
