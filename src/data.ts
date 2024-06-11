@@ -61,10 +61,12 @@ export const columnsBag = [ 'item', 'quantity', 'price', 'delivery' ];
 
 // Данные профиля по умолчанию
 export const userDataDefault = {
+    id: NaN,
     name: 'Empty',
-    email: null,
-    password: null,
-    about: 'Write about yourself'
+    email: '',
+    password: '',
+    description: 'Write about yourself',
+    token: '',
 };
 
 // Данные редактирования профиля

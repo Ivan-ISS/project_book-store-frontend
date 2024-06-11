@@ -1,3 +1,5 @@
+import { IUser } from './typeUser';
+
 export interface IBookResponse {
     id: number;
     name: string;
@@ -14,18 +16,7 @@ export interface IBookResponse {
     averageRating: number;
 };
 
-export interface IUser {        //
-    id: number;
-    name?: string;
-    dob?: number;
-    description?: string;
-    email: string;
-    password: string;
-    books?: IBookResponse[];
-    rating?: IRating[];
-}
-
-export interface ICategory {    //
+export interface ICategory {
     id: number;
     name: string;
     books: IBookResponse[];

@@ -6,26 +6,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const { email, password } = req.body;
-    
-    const validate = (email: string, password: string) => {
-        const isEmailValid = email.includes('@');
-        const isPasswordValid = password.length >= 6;
 
-        if (!isEmailValid && !isPasswordValid) {
-            return {error: true, message: 'Email or password are incorrect'};
-        } else if (!isEmailValid) {
-            return {error: true, message: 'Email is not valid'};
-        } else if (!isPasswordValid) {
-            return {error: true, message: 'Your password must be at least 6 characters long'};
-        }
-        return {error: false};
-    };
+    const response = await fetch('https://project-book-store-backend.vercel.app/api/v1/user/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: password, email: email }),
+    });
 
-    const validatedInfo = validate(email, password);
-
-    if (validatedInfo.error) {
-        res.status(400).send(validatedInfo);
-    } else {
-        res.status(200).send({ success: true, token: 'testToken' });
+    if (!response.ok) {
+        const error = await response.text();
+        res.status(response.status).send(error);
     }
+
+    const data = await response.json();
+    console.log('login send: ', data);
+    res.status(200).send({ success: true, data });
 }

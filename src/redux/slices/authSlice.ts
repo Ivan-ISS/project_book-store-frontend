@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { IBookData, IBookDataInBag } from '@/types/typeBook';
-import { IUserData } from '@/types/typeUser';
+import { IUser } from '@/types/typeUser';
 import { userDataDefault } from '@/data';
 import { saveUserData } from '@/utils/saveUserData';
 import { loadUserState } from '@/utils/loadUserState';
@@ -22,19 +22,19 @@ export const loginUser = createAsyncThunk(
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message);
+            const error = await response.text();
+            throw new Error(error);
         }
 
         const data = await response.json();
-        return data.token;
+        return data;
     }
 );
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        userData: userDataDefault as IUserData,
+        userData: userDataDefault as IUser,
         token: null as string | null,
         error: null as string | null | undefined,
         bag: [] as IBookDataInBag[],
@@ -81,10 +81,10 @@ const authSlice = createSlice({
             .addCase(loginUser.pending, (state) => {
                 state.status = 'in progress';
             })
-            .addCase(loginUser.fulfilled, (state, action: PayloadAction<string>) => {
+            .addCase(loginUser.fulfilled, (state, action: PayloadAction<{data: IUser}>) => {
                 state.status = 'successfully';
                 state.error = null;
-                state.token = action.payload;
+                state.token = action.payload.data.token;
                 if (state.userData.email) {
                     const user = loadUserState(state.userData.email);
                     if (user) {
