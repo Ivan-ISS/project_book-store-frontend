@@ -1,12 +1,12 @@
 import { IBookDataInBag } from '@/types/typeBook';
-import { IUserData } from '@/types/typeUser';
+import { IUser } from '@/types/typeUser';
 
 export interface IUserDataWithBag {
-    userData: IUserData;
+    userData: IUser;
     bag: IBookDataInBag[];
 }
 
-export const saveUserData = (userData: IUserData, bag: IBookDataInBag[]) => {
+export const saveUserData = (userData: IUser, bag: IBookDataInBag[]) => {
     try {
         const userDataWithBag: IUserDataWithBag = {userData, bag};
         const serializedState = JSON.stringify(userDataWithBag);

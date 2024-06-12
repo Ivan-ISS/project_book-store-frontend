@@ -2,7 +2,7 @@ export interface IUserData {
     name: string,
     email: string,
     password: string,
-    about: string
+    description: string
 }
 
 export const loadUserState = (email: string) => {

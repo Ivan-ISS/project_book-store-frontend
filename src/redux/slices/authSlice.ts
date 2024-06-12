@@ -31,6 +31,26 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export interface fetchEditUserParams {
+    id: number;
+    name?: string;
+    description?: string;
+}
+
+export const editUser = createAsyncThunk(
+    'auth/editUser',
+    async ({ id, name, description }: fetchEditUserParams) => {
+        console.log('id, name, description: ', id, name, description);
+        await fetch(`https://project-book-store-backend.vercel.app/api/v1/user/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, description }),
+        });
+    }
+);
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -42,14 +62,13 @@ const authSlice = createSlice({
     },
     reducers: {
         setDataUser(state, action: PayloadAction<{ [key: string]: string }>) {
-            const { email, password, about, name } = action.payload;
-            // state.userData = { ...state.userData, email, password};
+            const { email, password, description, name } = action.payload;
             state.userData = {
                 ...state.userData,
                 ...(name && { name }),
                 ...(email && { email }),
                 ...(password && { password }),
-                ...(about && { about }),
+                ...(description && { description }),
             };
         },
         addToBag(state, action: PayloadAction<IBookData>) {
@@ -84,11 +103,15 @@ const authSlice = createSlice({
             .addCase(loginUser.fulfilled, (state, action: PayloadAction<{data: IUser}>) => {
                 state.status = 'successfully';
                 state.error = null;
+                state.userData.id = action.payload.data.id;
+                state.userData.name = action.payload.data.name;
+                state.userData.description = action.payload.data.description;
+                state.userData.email = action.payload.data.email;
                 state.token = action.payload.data.token;
                 if (state.userData.email) {
                     const user = loadUserState(state.userData.email);
                     if (user) {
-                        state.userData = user.userData;
+                        // state.userData = user.userData;
                         state.bag = user.bag;
                     }
                 }

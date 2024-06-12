@@ -1,8 +1,9 @@
 import styles from './userModalContent.module.scss';
 import { formProfile } from '@/data';
 import { FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { RootDispatch } from '@/redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, RootDispatch } from '@/redux/store';
+import { editUser } from '@/redux/slices/authSlice';
 import { setDataUser } from '@/redux/slices/authSlice';
 import Input from '../../Input/input';
 import Button from '../../Button/button';
@@ -13,11 +14,13 @@ export interface UserModalContentProps {
 
 export default function UserModalContent({ closeModal }: UserModalContentProps) {
     const [formData, setFormData] = useState<{ [key: string]: string }>({});
+    const userId = useSelector((state: RootState) => state.auth.userData.id);
     const dispatch = useDispatch<RootDispatch>();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(setDataUser(formData));
+        dispatch(editUser({ id: userId, name: formData.name, description:formData.description }));
         closeModal();
     };
 

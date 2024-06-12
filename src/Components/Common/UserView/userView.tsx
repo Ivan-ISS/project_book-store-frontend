@@ -1,18 +1,22 @@
 import styles from './userView.module.scss';
-import { IUserData } from '@/types/typeUser';
+import { IUser } from '@/types/typeUser';
 import Image from 'next/image';
 import Button from '../Button/button';
 import UserModalContent from '../Modal/UserModalContent/userModalContent';
 import Modal from '../Modal/modal';
 import usePortal from '@/hooks/usePortal';
 
+export type Fileds = 'name' | 'email';
+
 export interface UserViewProps {
-    itemsUserView: string[];
-    userData: IUserData;
+    itemsUserView: Fileds[];
+    userData: IUser;
 }
 
 export default function UserView({ itemsUserView, userData }: UserViewProps) {
     const { isOpenPortal, openPortal, closePortal, Portal } = usePortal();
+
+    console.log('userData: ', userData);
 
     return (
         <div className={styles.userView}>

@@ -26,13 +26,13 @@ export const slides = {
 export const categories = [
     { nameCategory: 'Architecture', nameInRequest: 'Architecture' },
     { nameCategory: 'Art & Fashion', nameInRequest: 'Art' },
-    { nameCategory: 'Biography', nameInRequest: 'Biography & Autobiography' },
+    { nameCategory: 'Biography', nameInRequest: 'Biography' },
     { nameCategory: 'Business', nameInRequest: 'Business' },
-    { nameCategory: 'Crafts & Hobbies', nameInRequest: 'Crafts & Hobbies' },
+    { nameCategory: 'Crafts & Hobbies', nameInRequest: 'Crafts' },
     { nameCategory: 'Drama', nameInRequest: 'Drama' },
     { nameCategory: 'Fiction', nameInRequest: 'Fiction' },
     { nameCategory: 'Food & Drink', nameInRequest: 'Cooking' },
-    { nameCategory: 'Health & Wellbeing', nameInRequest: 'Health & Fitness' },
+    { nameCategory: 'Health & Wellbeing', nameInRequest: 'Health' },
     { nameCategory: 'History & Politics', nameInRequest: 'History' },
     { nameCategory: 'Humor', nameInRequest: 'Humor' },
     { nameCategory: 'Poetry', nameInRequest: 'Poetry' },
@@ -53,8 +53,9 @@ export const formFileds = [ 'Email', 'Password' ];
 // Данные меню профиля
 export const itemsProfileMenu = [ 'profile', 'sign out' ];
 
+export type Fileds = 'name' | 'email'
 // Поля представления пользователя
-export const itemsUserView = [ 'name', 'email' ];
+export const itemsUserView = [ 'name', 'email' ] as Fileds[];
 
 // Колонки корзины
 export const columnsBag = [ 'item', 'quantity', 'price', 'delivery' ];
@@ -70,4 +71,4 @@ export const userDataDefault = {
 };
 
 // Данные редактирования профиля
-export const formProfile = [ 'Name', 'Email', 'Password', 'About' ];
+export const formProfile = [ 'Name', 'Description' ];
